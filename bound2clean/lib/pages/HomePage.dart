@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +22,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-
-
-
-//Extracted Methods Below:
-
-
   AppBar myAppBar() {
     return AppBar(
       title: const Text(
@@ -29,14 +30,20 @@ class HomePage extends StatelessWidget {
           fontWeight: FontWeight.bold),
       ),
       backgroundColor: Colors.blue[600],
+      shadowColor: Colors.black,
+      foregroundColor: Colors.white,
+      elevation: 4.0,
     );
   }
 
   BottomNavigationBar myBottomNavigationBar() {
     return BottomNavigationBar(
-
-      currentIndex: 1,
-
+      currentIndex: _currentIndex,
+      onTap: (index) {
+        setState(() {
+          _currentIndex = index;
+        });
+      },
       backgroundColor: Colors.black,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
