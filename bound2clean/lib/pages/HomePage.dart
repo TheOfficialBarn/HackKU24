@@ -5,42 +5,46 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return myBottomNav();
+  }
+
+  Scaffold myBottomNav() {
     return Scaffold(
 
-      backgroundColor: Colors.blue[200],
+    backgroundColor: Colors.blue[200],
 
-      appBar: myAppBar(),
+    appBar: myAppBar(),
 
 
 
-      body: const Center(
-        child: Text('Heyyyy World!'),
-      ),
-      
+    body: const Center(
+      child: Text('Heyyyy World!'),
+    ),
+    
 
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.scoreboard_rounded),
-            label: 'Missions',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month_rounded),
-            label: 'Calendar',
-          ),
-        ],
-        selectedItemColor: Colors.yellow[500],
-        unselectedItemColor: Colors.white,
-        iconSize: 30,
-      )
+    bottomNavigationBar: BottomNavigationBar(
+      backgroundColor: Colors.black,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.scoreboard_rounded),
+          label: 'Missions',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_rounded),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_month_rounded),
+          label: 'Calendar',
+        ),
+      ],
+      selectedItemColor: Colors.yellow[500],
+      unselectedItemColor: Colors.white,
+      iconSize: 30,
+    )
 
-      
-    );
+    
+  );
   }
 
   AppBar myAppBar() {
