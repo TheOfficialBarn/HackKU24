@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:bound2clean/pages/Missions.dart';
+
+int aCounter = 0;
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,7 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Color.fromARGB(255, 0, 20, 45),
       body: Stack(
         children: [
@@ -32,7 +36,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Center(
             child: Text(
-              '24 Days',
+              '$aCounter Days',
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 60, // Increase font size
@@ -41,6 +45,15 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            aCounter++;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
       ),
     );
   }
