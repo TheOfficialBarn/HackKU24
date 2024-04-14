@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bound2clean/classes/tiles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
+/// A page that displays a list of missions for the day.
 class Missions extends StatefulWidget {
   const Missions({Key? key}) : super(key: key);
 
@@ -14,10 +14,10 @@ class _MissionsState extends State<Missions> {
   List<String> tasks = ['Shower', 'Brush Teeth', 'Deodorant', 'Fragrance','Face Wash', 'Moisturizer']; // Add your tasks here
   List<bool> taskStatus = [false, false, false, false, false, false]; // Add your task status here
 
-  late bool incrementMade; //This is used to check if the increment has been made for the day
-  late int lastOpenedDay; //This is used to check if the day has changed for resetting the ToDoList
-  late int incrementVariable; //This is used to increment the variable for the day. It is a global bc I want to use it in HomePage.dart
-  //If something wrong it might have to do with late.
+  late bool incrementMade; // This is used to check if the increment has been made for the day
+  late int lastOpenedDay; // This is used to check if the day has changed for resetting the ToDoList
+  late int incrementVariable; // This is used to increment the variable for the day. It is a global because I want to use it in HomePage.dart
+  // If something wrong it might have to do with late.
 
   @override
   void initState() {
@@ -25,6 +25,7 @@ class _MissionsState extends State<Missions> {
     loadPreferences();
   }
 
+  /// Loads the preferences from shared preferences.
   void loadPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     lastOpenedDay = prefs.getInt('lastOpenedDay') ?? DateTime.now().day;
@@ -34,6 +35,7 @@ class _MissionsState extends State<Missions> {
     checkIfAllTasksCompleted();
   }
 
+  /// Saves the preferences to shared preferences.
   void savePreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('lastOpenedDay', lastOpenedDay);
@@ -41,6 +43,7 @@ class _MissionsState extends State<Missions> {
     await prefs.setBool('incrementMade', incrementMade);
   }
 
+  /// Checks if a new day has started and resets the task status accordingly.
   void checkIfNewDay() {
     if (DateTime.now().day != lastOpenedDay) {
       setState(() {
@@ -52,6 +55,7 @@ class _MissionsState extends State<Missions> {
     }
   }
 
+  /// Checks if all tasks have been completed and increments the variable if they have.
   void checkIfAllTasksCompleted() {
     if (!incrementMade && taskStatus.every((task) => task)) {
       incrementVariable++;
@@ -60,11 +64,7 @@ class _MissionsState extends State<Missions> {
     }
   }
 
-
-
-
-
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[200],
