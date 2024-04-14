@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:bound2clean/pages/Missions.dart';
 
+// Counter variable to keep track of hygiene streak
+int aCounter = 0;
+
+/// HomePage widget is a StatefulWidget that represents the home page of the application.
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -7,10 +12,12 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+/// _HomePageState is the state class for the HomePage widget.
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      // Set the background color of the scaffold
       backgroundColor: Color.fromARGB(255, 0, 20, 45),
       body: Stack(
         children: [
@@ -32,7 +39,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Center(
             child: Text(
-              '24 Days',
+              '$aCounter Days',
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 60, // Increase font size
@@ -41,6 +48,16 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            // Increment the counter when the floating action button is pressed
+            aCounter++;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
       ),
     );
   }
